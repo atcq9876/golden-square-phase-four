@@ -1,3 +1,0 @@
-require "dishes"
-require "order"
-

@@ -5,20 +5,20 @@ SOLO PROJECT DESIGN RECIPE
 1. Describe the Problem
 Put or write the user story here. Add any clarifying notes you might have.
 
-# 1
+# 1 (DONE)
 As a customer
 So that I can check if I want to order something
 I would like to see a list of dishes with prices.
     # class Dishes
         # #see_menu (returns hash of dish names and prices)
 
-# 2
+# 2 (DONE)
 As a customer
 So that I can order the meal I want
 I would like to be able to select some number of several available dishes.
     # class Order (interacts with Dishes: array, add dishes to be ordered)
 
-# 3
+# 3 (DONE)
 As a customer
 So that I can verify that my order is correct
 I would like to see an itemised receipt with a grand total.
@@ -83,9 +83,9 @@ Create examples of the classes being used together in different situations and c
 
 # 1 (create Order, #add four pizzas, #check_order)
   order = Order.new
-  order.add(:margherita, 1)
-  order.add(:veggie, 2)
-  order.add(:pepperoni, 1)
+  order.add("margherita", 1)
+  order.add("veggie", 2)
+  order.add("pepperoni", 1)
   expect(order.check_order).to eq "One margherita, £7.99; two veggies, £17.98; one pepperoni, £9.99; TOTAL = £35.96"
 
 # 2
