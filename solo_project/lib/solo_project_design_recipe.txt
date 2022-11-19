@@ -1,0 +1,135 @@
+SOLO PROJECT DESIGN RECIPE
+(Here is a project to test your golden square skills overall)
+
+
+1. Describe the Problem
+Put or write the user story here. Add any clarifying notes you might have.
+
+# 1
+As a customer
+So that I can check if I want to order something
+I would like to see a list of dishes with prices.
+    # class Dishes
+        # #see_menu (returns hash of dish names and prices)
+
+# 2
+As a customer
+So that I can order the meal I want
+I would like to be able to select some number of several available dishes.
+    # class Order (interacts with Dishes: array, add dishes to be ordered)
+
+# 3
+As a customer
+So that I can verify that my order is correct
+I would like to see an itemised receipt with a grand total.
+    # class Order (uses array from Order and interacts with hash in Dishes to tally up prices)
+
+
+# 4
+Use the twilio-ruby gem to implement the fourth one below. You will need to use doubles too.
+As a customer
+So that I am reassured that my order will be delivered on time
+I would like to receive a text such as "Thank you! Your order was placed and will be delivered before 18:52" after I have ordered.
+
+!!! Fair warning: if you push your Twilio API Key to a public Github repository, anyone will be able to see and use it...
+            ...What are the security implications of that? How will you keep that information out of your repository?
+
+
+
+
+2. Design the Class System
+Design the interface of each class in more detail.
+
+class Dishes
+  def initialize
+    # declare a @menu hash with dish names as key symbols and prices as value symbols
+    @menu = { margherita: 7.99, pepperoni: 9.99, veggie: 8.99, meatfeast: 10.99, hawaiian: 9.99 }
+  end
+
+  def see_menu
+    # returns @menu (dish names and prices)
+  end
+
+  def price(dish)
+    #returns price of a dish (accessed using @menu hash)
+  end
+end
+
+class Order
+  def initialize
+    # declare an empty @order array
+  end
+
+  def add(dish, number)
+    # add (dish * number) to @order array
+    # returns successfully added message
+  end
+
+  def check_order (receipt)
+    # returns formatted list of dishes, their prices, and a grand total
+    # uses @order array and #price(dish) from Dishes to tally up prices
+  end
+
+  def place_order / send_text_confirmation
+    # Plan this after written code and tests for other requirements
+    # See user story for full info
+  end
+end
+
+
+
+3. Create Examples as Integration Tests
+Create examples of the classes being used together in different situations and combinations that reflect the ways in which the system will be used.
+
+# 1 (create Order, #add four pizzas, #check_order)
+  order = Order.new
+  order.add(:margherita, 1)
+  order.add(:veggie, 2)
+  order.add(:pepperoni, 1)
+  expect(order.check_order).to eq "One margherita, £7.99; two veggies, £17.98; one pepperoni, £9.99; TOTAL = £35.96"
+
+# 2
+
+
+
+
+
+4. Create Examples as Unit Tests
+Create examples, where appropriate, of the behaviour of each relevant class at a more granular level of detail.
+
+Order
+  Mock integration test
+  # 1 (create Order, #add four pizzas, #check_order but can't use #price)
+    order = Order.new
+    order.add(:margherita, 1)
+    order.add(:veggie, 2)
+    order.add(:pepperoni, 1)
+    expect(order.check_order).to eq "One margherita, £7.99; two veggies, £17.98; one pepperoni, £9.99; TOTAL = £35.96"
+
+  #add
+    # 1 (invalid dish name)
+      raise_error
+
+    # 2 (second argument isn't an integer)
+      raise_error
+
+  #check_order
+    # 1 (nothing added to order)
+      raise_error
+
+
+Dishes
+  #see_menu
+    returns pre-populated menu hash
+
+  #price(dish)
+    # 1 (invalid argument)
+      raise_error
+
+    # 2 (valid argument)
+      returns price
+
+
+5. Implement the Behaviour
+After each test you write, follow the test-driving process of red, green, refactor to implement the behaviour.
+
