@@ -16,4 +16,4 @@ My full list of repos for this project are listed below:
 - [Phase three](https://github.com/atcq9876/golden-square-phase-three)
 - [Phase four](https://github.com/atcq9876/golden-square-phase-four)
 
-See [here](https://github.com/makersacademy/golden-square) for full info on the Makers Golden Square module
+See [here](https://github.com/makersacademy/golden-square) for full info on the Makers Golden Square module.
